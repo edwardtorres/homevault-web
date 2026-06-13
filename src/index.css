@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bone text-ink font-display antialiased;
+  }
+}
+
+@layer components {
+  /* Thick black divider rule between full-width rows. */
+  .hv-rule {
+    @apply bg-ink;
+    height: 3px;
+  }
+
+  .hv-rule-thin {
+    @apply bg-ink/80;
+    height: 1.5px;
+  }
+
+  /* Underline-style form field (Aretè look). */
+  .hv-input {
+    @apply w-full border-0 border-b-2 border-ink/80 bg-transparent py-2 text-xl
+      font-extrabold tracking-tight text-ink placeholder:font-bold
+      placeholder:text-ink/40 focus:border-ink focus:outline-none;
+  }
+
+  .hv-label {
+    @apply mb-1 block text-[11px] font-extrabold uppercase tracking-[0.12em];
+  }
+}
