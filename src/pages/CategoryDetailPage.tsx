@@ -55,7 +55,7 @@ export function CategoryDetailPage() {
           </Link>
         </div>
 
-        <h1 className="mt-4 break-words text-6xl font-black uppercase leading-[0.9] tracking-tight sm:text-7xl">
+        <h1 className="mt-4 break-words text-[clamp(2.5rem,11vw,4.5rem)] font-black uppercase leading-[0.9] tracking-tight">
           {category.name}
         </h1>
         <div className="hv-rule-thin mt-6" />
@@ -65,7 +65,7 @@ export function CategoryDetailPage() {
           <SummaryCard label="Value" value={formatMoney(sumValue(catItems))} />
         </div>
 
-        <div className="mt-10 flex items-end justify-between gap-4">
+        <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <h2 className="text-2xl font-black uppercase tracking-tight">Items</h2>
           <Button onClick={() => setShowAdd(true)}>Add Item</Button>
         </div>
@@ -91,11 +91,13 @@ export function CategoryDetailPage() {
                   <div className="truncate text-xl font-black uppercase tracking-tight">
                     {item.name}
                   </div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-ink/70">
+                  <div className="truncate text-[11px] font-bold uppercase tracking-wider text-ink/70">
                     {item.serial_number ? `Serial ${item.serial_number}` : "No serial number"}
                   </div>
                 </div>
-                <div className="text-base font-black">{formatMoney(item.estimated_value)}</div>
+                <div className="flex-none whitespace-nowrap text-base font-black">
+                  {formatMoney(item.estimated_value)}
+                </div>
               </button>
             ))}
           </div>

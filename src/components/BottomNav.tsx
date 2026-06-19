@@ -16,7 +16,7 @@ export const NAV_ITEMS: NavItem[] = [
 
 export function BottomNav() {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-30 border-t-[3px] border-ink bg-bone md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-30 border-t-[3px] border-ink bg-bone pb-[env(safe-area-inset-bottom)] md:hidden">
       <div className="grid grid-cols-5">
         {NAV_ITEMS.map((item) => (
           <NavLink
@@ -24,7 +24,7 @@ export function BottomNav() {
             to={item.to}
             end={item.end}
             className={({ isActive }) =>
-              `py-3 text-center text-[10px] font-extrabold uppercase tracking-[0.06em] ${
+              `px-1 py-3.5 text-center text-[10px] font-extrabold uppercase tracking-[0.04em] ${
                 isActive ? "bg-ink text-bone" : "text-ink/70"
               }`
             }

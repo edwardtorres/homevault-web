@@ -80,13 +80,15 @@ export function DashboardPage() {
                       className="h-5 w-5 flex-none border-2 border-ink"
                       style={{ background: roomColor(room.id) }}
                     />
-                    <span className="flex-1 truncate text-lg font-black uppercase tracking-tight">
-                      {room.name}
-                    </span>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-ink/60">
-                      {countLabel(roomCats.length, "category")} · {countLabel(roomItems.length, "item")}
-                    </span>
-                    <span className="ml-2 text-sm font-black">
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-lg font-black uppercase tracking-tight">
+                        {room.name}
+                      </div>
+                      <div className="truncate text-[11px] font-bold uppercase tracking-wider text-ink/60">
+                        {countLabel(roomCats.length, "category")} · {countLabel(roomItems.length, "item")}
+                      </div>
+                    </div>
+                    <span className="flex-none whitespace-nowrap text-sm font-black">
                       {formatMoney(sumValue(roomItems))}
                     </span>
                   </Link>

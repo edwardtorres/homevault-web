@@ -28,8 +28,14 @@ export function useSession(): SessionValue {
   return value;
 }
 
+const DEMO_FLAG = "hv-demo";
+
 export function SessionProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<SessionMode>("loading");
+  // Remember demo mode across reloads so a refresh doesn't bounce a demo
+  // visitor back to the login screen.
+  const [mode, setMode] = useState<SessionMode>(() =>
+    sessionStorage.getItem(DEMO_FLAG) === "1" ? "demo" : "loading"
+  );
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
@@ -37,7 +43,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
 
     if (!supabase) {
       // No backend configured — the app runs in demo-only mode.
-      setMode("guest");
+      // Don't kick a visitor out of an active demo session.
+      setMode((prev) => (prev === "demo" ? "demo" : "guest"));
       return;
     }
 
@@ -47,7 +54,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         setUserEmail(data.session.user.email ?? null);
         setMode("authed");
       } else {
-        setMode("guest");
+        // Preserve an active demo session if getSession resolves after the
+        // visitor has already tapped "View Demo".
+        setMode((prev) => (prev === "demo" ? "demo" : "guest"));
       }
     });
 
@@ -87,8 +96,14 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     setMode("guest");
   };
 
-  const enterDemo = () => setMode("demo");
-  const exitDemo = () => setMode("guest");
+  const enterDemo = () => {
+    sessionStorage.setItem(DEMO_FLAG, "1");
+    setMode("demo");
+  };
+  const exitDemo = () => {
+    sessionStorage.removeItem(DEMO_FLAG);
+    setMode("guest");
+  };
 
   const value: SessionValue = {
     mode,

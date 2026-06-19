@@ -34,7 +34,9 @@ export function ItemResultRow({ item, room, category }: Props) {
           </div>
         )}
       </div>
-      <div className="text-sm font-black">{formatMoney(item.estimated_value)}</div>
+      <div className="flex-none whitespace-nowrap text-sm font-black">
+        {formatMoney(item.estimated_value)}
+      </div>
     </Link>
   );
 }

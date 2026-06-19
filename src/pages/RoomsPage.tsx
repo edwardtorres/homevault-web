@@ -24,7 +24,7 @@ export function RoomsPage() {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-5 py-8">
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
         <h1 className="text-5xl font-black uppercase tracking-tight sm:text-6xl">Rooms</h1>
         <Button onClick={() => setShowAdd(true)}>Add Room</Button>
       </div>
@@ -49,16 +49,16 @@ export function RoomsPage() {
                   className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
                   style={{ background: color }}
                 />
-                <div className="relative flex items-center gap-3 pr-1">
+                <div className="relative flex flex-col items-start gap-2 py-4 pr-1 sm:flex-row sm:items-center sm:gap-3 sm:py-0">
                   <Link
                     to={`/rooms/${room.id}`}
-                    className="flex min-w-0 flex-1 items-center gap-4 py-6"
+                    className="flex w-full min-w-0 items-center gap-3 sm:flex-1 sm:gap-4 sm:py-6"
                   >
                     <span
-                      className="h-6 w-6 flex-none border-2 border-ink"
+                      className="h-5 w-5 flex-none border-2 border-ink sm:h-6 sm:w-6"
                       style={{ background: color }}
                     />
-                    <span className="truncate text-4xl font-black uppercase tracking-tight sm:text-5xl">
+                    <span className="truncate text-2xl font-black uppercase tracking-tight sm:text-5xl">
                       {room.name}
                     </span>
                   </Link>
@@ -70,7 +70,7 @@ export function RoomsPage() {
                     <div className="text-ink">{formatMoney(sumValue(roomItems))}</div>
                   </div>
 
-                  <div className="flex flex-none gap-2 pl-2">
+                  <div className="flex flex-none gap-2 pl-8 sm:pl-2">
                     <button className={rowAction} onClick={() => setEditing(room)}>
                       Edit
                     </button>

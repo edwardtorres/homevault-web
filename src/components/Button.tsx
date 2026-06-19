@@ -15,8 +15,8 @@ const VARIANTS: Record<Variant, string> = {
 export function Button({ variant = "solid", className = "", ...props }: Props) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 rounded-lg border-2 px-5 py-3
-        text-xs font-extrabold uppercase tracking-[0.08em] transition active:scale-[0.98]
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border-2
+        px-5 py-3 text-xs font-extrabold uppercase tracking-[0.08em] transition active:scale-[0.98]
         disabled:cursor-not-allowed disabled:opacity-40 ${VARIANTS[variant]} ${className}`}
       {...props}
     />

@@ -32,7 +32,11 @@ export function formatDate(iso: string): string {
   });
 }
 
-/** Pluralizing count helper, e.g. countLabel(1, "item") => "1 item". */
+/** Pluralizing count helper, e.g. countLabel(1, "item") => "1 item",
+ * countLabel(2, "category") => "2 categories". */
 export function countLabel(n: number, noun: string): string {
-  return `${n} ${noun}${n === 1 ? "" : "s"}`;
+  if (n === 1) return `${n} ${noun}`;
+  // Words ending in a consonant + "y" pluralize as "-ies" (category -> categories).
+  const plural = /[^aeiou]y$/i.test(noun) ? `${noun.slice(0, -1)}ies` : `${noun}s`;
+  return `${n} ${plural}`;
 }
